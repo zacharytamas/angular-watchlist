@@ -1,2 +1,49 @@
 body {
   margin-top: 40px; }
+
+.navbar-inner {
+  background: #363636; }
+
+.sidebar-nav {
+  background: #eee;
+  padding: 9px 0;
+  position: fixed;
+  bottom: 0;
+  top: 32px;
+  width: 23.404255319148934%; }
+  .sidebar-nav #addForm {
+    background: #ccc;
+    padding: 9px 15px;
+    margin-bottom: 9px; }
+    .sidebar-nav #addForm input {
+      width: 100%;
+      padding-right: 0;
+      margin-left: -6px;
+      margin-bottom: 0; }
+  .sidebar-nav ul.nav {
+    position: fixed;
+    left: 0;
+    width: 23.404255319148934%;
+    overflow-y: scroll;
+    bottom: 0;
+    top: 90px;
+    border-bottom: 1px #cccccc solid; }
+    .sidebar-nav ul.nav li:hover .remove-btn {
+      display: block; }
+    .sidebar-nav ul.nav li {
+      height: 30px;
+      line-height: 30px;
+      padding: 9px 15px;
+      border-bottom: 1px white solid; }
+      .sidebar-nav ul.nav li .remove-btn {
+        display: none;
+        float: right;
+        font-weight: bold; }
+      .sidebar-nav ul.nav li.active {
+        background: #5bb75b; }
+        .sidebar-nav ul.nav li.active a {
+          font-weight: bold;
+          color: #fff; }
+      .sidebar-nav ul.nav li a:hover {
+        background: none;
+        /* Override Bootstrap default */ }

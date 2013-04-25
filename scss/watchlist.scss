@@ -2,3 +2,69 @@
 body {
   margin-top: 40px
 }
+
+.navbar-inner {
+    background: #363636;
+}
+
+.sidebar-nav {
+    background: #eee;
+    padding: 9px 0;
+    position: fixed;
+    bottom: 0;
+    top: 32px;
+    width: 23.404255319148934%;
+    
+
+    #addForm {
+        background: #ccc;
+        padding: 9px 15px;
+        margin-bottom: 9px;
+        input {
+            width: 100%;
+            padding-right: 0;
+            margin-left: -6px;
+            margin-bottom: 0;
+        }
+    }
+
+    ul.nav {
+        position: fixed;
+        left: 0;
+        width: 23.404255319148934%;
+        overflow-y: scroll;
+        bottom: 0;
+        top: 90px;
+        border-bottom: 1px #ccc solid;
+
+        li:hover .remove-btn {
+            display: block;
+        }
+
+
+        li {
+            height: 30px;
+            line-height: 30px;
+            padding: 9px 15px;
+            border-bottom: 1px #fff solid;
+
+            .remove-btn {
+                display: none;
+                float: right;
+                font-weight: bold;
+            }
+
+            &.active {
+                background: #5bb75b;
+                a {
+                    font-weight: bold;
+                    color: #fff;
+                }
+            }
+
+            a:hover {
+                background: none;  /* Override Bootstrap default */
+            }
+        }
+    }
+}

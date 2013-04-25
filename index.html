@@ -9,13 +9,14 @@
     <link rel="stylesheet" type="text/css" href="css/watchlist.css">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/watchlist.js"></script>
     
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="brand">Watchlist</a>
@@ -28,32 +29,33 @@
         <div class="row-fluid">
 
           <div class="span3">
-            <div class="well sidebar-nav">
-              <form ng-submit="addStock()">
+            <div class="sidebar-nav">
+              <form ng-submit="addStock()" id="addForm">
                 <input type="text" ng-change="formatStockAdd()" ng-model="stock_to_add" placeholder="Enter a stock to add">
               </form>
-              <ul>
-                <li ng-repeat="stock in stocks">
-                  <a href="#/stock/{{ stock.name }}" ng-click="showStock($index)">{{ stock.name }}</a>
-                  <button class="btn btn-danger" title="Remove {{ stock.name }} from Watchlist" ng-click="removeStock($index)">X</button>
-                </li>
-              </ul>
+              
+                <ul class="nav">
+                  <li ng-repeat="stock in stocks" 
+                      ng-class="{active: stock == selected_stock }">
+                    <button class="btn remove-btn" title="Remove {{ stock.name }} from Watchlist" ng-click="removeStock($index)">&times;</button>
+                    <a href="#/stock/{{ stock.name }}" ng-click="showStock($index, $event)">{{ stock.name }}</a>
+                  </li>
+                </ul>
+              
             </div>
           </div>
 
           <div class="span9">
-            <!-- TradingView Widget BEGIN -->
-            <script type="text/javascript" src="https://s3.amazonaws.com/tradingview/tv.js"></script>
-            <script type="text/javascript">
-              new TradingView.widget({
-                "width": "100%",
-                "height": "600",
-                "symbol": "{{ selected_stock.name }}",
-                "interval": "D",
-                "toolbar_bg": "#E4E8EB",
-                "allow_symbol_change": false
-              });
-            </script>
+            
+            <iframe id="tradingview_41027"
+                    ng-show="selected_stock" 
+                    src="https://www.tradingview.com/widgetembed/?symbol={{ selected_stock.name }}&amp;interval=D&amp;toolbarbg=E4E8EB" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    scrolling="no">
+            </iframe>
             <!-- TradingView Widget END -->
 
             <!-- <ng-view></ng-view> -->
