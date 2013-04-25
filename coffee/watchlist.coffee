@@ -23,6 +23,7 @@ App.controller "Watchlist", [
             if localStorage['stocks']
                 $scope.stocks = angular.fromJson localStorage['stocks']
 
+        # Preselect the first stock.
         $scope.selected_stock = $scope.stocks[0]
 
         $scope.next_stock = ->
@@ -38,9 +39,11 @@ App.controller "Watchlist", [
             # if not, we can't save them
 
         $scope.formatStockAdd = ->
+            # Normalize stock symbols as they're typed.
             $scope.stock_to_add = $scope.stock_to_add.replace(" ", "").toUpperCase()
 
         $scope.addStock = ->
+            # Check if the stock is already in the list, if not, add it and select it.
             existing = _.findWhere($scope.stocks, name: $scope.stock_to_add)
             if not existing
                 len = $scope.stocks.push name: $scope.stock_to_add
@@ -52,10 +55,10 @@ App.controller "Watchlist", [
         $scope.removeStock = ($index) ->
             stock = $scope.stocks[$index]
             if stock == $scope.selected_stock
-                $scope.stocks.splice($index, 1)
+                # if the stock to be removed is currently selected, select the first stock
                 $scope.selected_stock = $scope.stocks[0]
-            else
-                $scope.stocks.splice($index, 1)
+            # Remove the stock
+            $scope.stocks.splice($index, 1)
             $scope.save_watchlist()
             
 
